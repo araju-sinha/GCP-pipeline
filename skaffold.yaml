@@ -6,7 +6,7 @@ profiles:
   - name: flask-pipeline
     build:
       artifacts:
-      - image: gcr.io/$PROJECT_ID/flask-app:$SHORT_SHA
+      - image: gcr.io/$PROJECT_ID/flask-app
     deploy:
       kubectl:
         manifests:
