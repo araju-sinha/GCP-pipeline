@@ -5,7 +5,9 @@ metadata:
 description: "My GKE DEPLOY pipeline"
 serialPipeline:
   stages:
-    - targetId: flask-pipeline
+  - targetId: flask-pipeline
+  profiles:
+  - flask-pipeline
 
 ---
 apiVersion: deploy.cloud.google.com/v1
