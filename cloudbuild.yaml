@@ -1,14 +1,14 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     id: Image Build
-    args: ['build', '-t', '$_LOCATION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/base-image', './app']
+    args: ['build', '-t', '$_LOCATION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME:base-image', './app']
 
   - name: 'gcr.io/cloud-builders/docker'
     id: Image Push to Artifact Registry
-    args: ['push', '$_LOCATION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/base-image',]
+    args: ['push', '$_LOCATION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME:base-image',]
 
 images:
-  - '$_LOCATION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/base-image'
+  - '$_LOCATION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME:base-image'
 
 substitutions:
   _LOCATION: us-central1
@@ -18,3 +18,4 @@ options:
   logging: CLOUD_LOGGING_ONLY
 
 #us-central1-docker.pkg.dev/gke-k8-terra/webapp
+# 'gcr.io/$PROJECT_ID/my-app',
