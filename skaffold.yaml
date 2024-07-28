@@ -1,0 +1,11 @@
+apiVersion: skaffold/v2beta13
+kind: Config
+metadata:
+  name: flask-app
+build:
+  artifacts:
+  - image: gcr.io/$PROJECT_ID/$_REPO_NAME:$SHORT_SHA
+deploy:
+  kustomize:
+    paths:
+    - ./k8s
