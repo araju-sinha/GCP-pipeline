@@ -17,5 +17,5 @@ metadata:
 description: "Development environment"
 requireApproval: false
 gke:
-  cluster: projects/your-project-id/locations/us-central1/clusters/terra-gke-cluster
+  cluster: projects/$PROJECT_ID/locations/us-central1/clusters/terra-gke-cluster
   location: us-central1
