@@ -8,7 +8,7 @@ steps:
     args: ['push', 'gcr.io/$PROJECT_ID/$_REPO_NAME:$SHORT_SHA']
 
   - name: 'gcr.io/cloud-builders/skaffold'
-    args: ['deploy', '-f', 'skaffold.yaml', '--default-repo', 'gcr.io/$PROJECT_ID/$_REPO_NAME']
+    args: ['deploy', '-f', 'skaffold.yaml', '--default-repo', 'gcr.io/$PROJECT_ID/$_REPO_NAME', '--images', 'gcr.io/$PROJECT_ID/$_REPO_NAME:$SHORT_SHA']
 
 
   # - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
