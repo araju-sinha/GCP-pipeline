@@ -15,5 +15,4 @@ substitutions:
   _REPO_NAME: flask-app # Default value
 
 options:
-  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKE
-
+  logging: CLOUD_LOGGING_ONLY
