@@ -7,16 +7,20 @@ steps:
     id: Image Push to Artifact Registry
     args: ['push', 'gcr.io/$PROJECT_ID/$_REPO_NAME:$SHORT_SHA']
 
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        gcloud deploy releases create release-$SHORT_SHA \
-          --project=$PROJECT_ID \
-          --region=$_REGION \
-          --delivery-pipeline=$_PIPELINE_NAME \
-          --images=flask-app=gcr.io/$PROJECT_ID/$_REPO_NAME:$SHORT_SHA
+  - name: 'gcr.io/cloud-builders/skaffold'
+    args: ['deploy', '-f', 'skaffold.yaml', '--default-repo', 'gcr.io/$PROJECT_ID/$_REPO_NAME']
+
+
+  # - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  #   entrypoint: 'bash'
+  #   args:
+  #     - '-c'
+  #     - |
+  #       gcloud deploy releases create release-$SHORT_SHA \
+  #         --project=$PROJECT_ID \
+  #         --region=$_REGION \
+  #         --delivery-pipeline=$_PIPELINE_NAME \
+  #         --images=flask-app=gcr.io/$PROJECT_ID/$_REPO_NAME:$SHORT_SHA
  
 images:
   - 'gcr.io/$PROJECT_ID/$_REPO_NAME:$SHORT_SHA'
@@ -30,6 +34,7 @@ substitutions:
   _APP_NAME: flask-app
   _REGION: us-central1
   _PIPELINE_NAME: my-pipeline
+  _TAG: '$SHORT_SHA'
 
 
 
