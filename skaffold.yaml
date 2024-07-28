@@ -4,9 +4,6 @@ metadata:
   name: flask-app
 profiles:
   - name: flask-pipeline
-    build:
-      artifacts:
-      - image: gcr.io/$PROJECT_ID/flask-app
     deploy:
       kubectl:
         manifests:
