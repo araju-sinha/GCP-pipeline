@@ -1,11 +1,25 @@
-apiVersion: skaffold/v2beta13
+# apiVersion: skaffold/v2beta13
+# kind: Config
+# metadata:
+#   name: flask-app
+# build:
+#   artifacts:
+#   - image: gcr.io/$PROJECT_ID/flask-app:$SHORT_SHA
+# deploy:
+#   kubectl:
+#     manifests:
+#     - k8s/deployment.yaml
+
+apiVersion: skaffold/v2beta26
 kind: Config
 metadata:
   name: flask-app
-build:
-  artifacts:
-  - image: gcr.io/$PROJECT_ID/flask-app:$SHORT_SHA
-deploy:
-  kubectl:
-    manifests:
-    - k8s/deployment.yaml
+profiles:
+  - name: flask-pipeline
+    build:
+      artifacts:
+        - image: gcr.io/$PROJECT_ID/flask-app:$SHORT_SHA
+    deploy:
+      kubectl:
+        manifests:
+          - k8s/deployment.yaml
