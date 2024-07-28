@@ -1,0 +1,21 @@
+apiVersion: deploy.cloud.google.com/v1
+kind: DeliveryPipeline
+metadata:
+  name: my-pipeline
+description: "My GKE DEPLOY pipeline"
+serialPipeline:
+  stages:
+    - targetId: dev
+      profiles:
+        - dev
+
+---
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: dev
+description: "Development environment"
+requireApproval: false
+gke:
+  cluster: projects/your-project-id/locations/us-central1/clusters/terra-gke-cluster
+  location: us-central1
