@@ -25,7 +25,7 @@ steps:
     entrypoint: bash
     args: 
       - '-c'
-      - gcloud deploy releases create my-release-001 --project=$PROJECT_ID --region=$_REGION --delivery-pipeline=$_PIPELINE_NAME --skaffold-file=./skaffold.yaml --images=gcr.io/$PROJECT_ID/$_REPO_NAME:$SHORT_SHA
+      - gcloud deploy releases create my-release-001 --project=$PROJECT_ID --region=$_REGION --delivery-pipeline=$_PIPELINE_NAME --skaffold-file=./skaffold.yaml
 images:
   - 'gcr.io/$PROJECT_ID/$_REPO_NAME:$SHORT_SHA'
 #$PROJECT_ID/$_REPO_NAME:$SHORT_SHA
