@@ -14,8 +14,8 @@ steps:
       - |
         gcloud deploy releases create release-$SHORT_SHA \
           --project=$PROJECT_ID \
-          --region=$REGION \
-          --delivery-pipeline=$PIPELINE_NAME \
+          --region=$_REGION \
+          --delivery-pipeline=$_PIPELINE_NAME \
           --images=flask-app=gcr.io/$PROJECT_ID/$_REPO_NAME:$SHORT_SHA
 
 images:
