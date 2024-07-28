@@ -16,7 +16,7 @@ steps:
           --project=$PROJECT_ID \
           --region=$REGION \
           --delivery-pipeline=$PIPELINE_NAME \
-          --images=my-app=$_LOCATION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME:$SHORT_SHA
+          --images=flask-app=gcr.io/$PROJECT_ID/$_REPO_NAME:$SHORT_SHA
 
 images:
   - 'gcr.io/$PROJECT_ID/$_REPO_NAME:$SHORT_SHA'
