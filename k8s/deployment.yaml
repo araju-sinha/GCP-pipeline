@@ -2,8 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flask-app
+  labels: 
+    app: flask-app  
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: flask-app
@@ -14,6 +16,6 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: us-central1-docker.pkg.dev/gke-k8-terra/flask-app/flask-img:latest
+        image: us-central1-docker.pkg.dev/gke-k8-terra/flask-app/flask-img
         ports:
         - containerPort: 80
