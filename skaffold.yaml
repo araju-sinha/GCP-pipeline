@@ -1,28 +1,27 @@
-apiVersion: skaffold/v2beta26
-kind: Config
-apiVersion: skaffold/v4beta7
+apiVersion: skaffold/v4beta9
 kind: Config
 build:
   tagPolicy:
     gitCommit: {}
   local: {}
-profiles: # used to differentiate the manifest files for dev and prod env.
-  - name: flask-pipeline # used in cloud-deploy.yaml of step-1.
-    manifests:
-    - k8s/deployment.yaml
-
+manifests:
+  rawYaml:
+    - ./k8s/*
 deploy:
   kubectl: {}
   logs:
-    prefix: container # this is a fixed value. 
-customActions: # this would be used in pre-deploy and post-deploy steps.
-  - name: em-verify-test # used in cloud-deploy.yaml file of step-1. 
-    containers:
-      - name: em-verify-test # can be any name
-        image: alpine # this should be an image provided by GCP or from the Artifact registry.
-        command:
-          - /bin/sh
-        args:
-          - -c
-          - ls -la # can be any command that can be run inside on the fly container where the image mentioned is used.
-verify:
+    prefix: container
+
+
+# apiVersion: skaffold/v2beta26
+# kind: Config
+# apiVersion: skaffold/v4beta7
+# kind: Config
+# build:
+#   tagPolicy:
+#     gitCommit: {}
+#   local: {}
+# profiles: # used to differentiate the manifest files for dev and prod env.
+#   - name: flask-pipeline # used in cloud-deploy.yaml of step-1.
+#     manifests:
+#     - k8s/deployment.yaml
