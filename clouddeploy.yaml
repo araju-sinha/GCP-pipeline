@@ -1,21 +1,45 @@
-apiVersion: deploy.cloud.google.com/v1
-kind: DeliveryPipeline
-metadata:
-  name: my-pipeline
-description: "My GKE DEPLOY pipeline"
-serialPipeline:
-  stages:
-  - targetId: flask-pipeline
-  profiles:
-  - flask-pipeline
 
----
-apiVersion: deploy.cloud.google.com/v1
-kind: Target
-metadata:
-  name: flask-pipeline
-description: "Development environment"
-requireApproval: false
-gke:
-  cluster: projects/$PROJECT_ID/locations/us-central1/clusters/terra-gke-cluster
+# pipeline.yaml
+name: gke-cicd-pipeline
+description: Pipeline for deploying to GKE
+target:
+  project: ${PROJECT_ID}
   location: us-central1
+deliveryPipeline:
+  stages:
+    - target:
+        project: ${PROJECT_ID}
+        location: us-central1
+      profiles:
+        - flask-pipeline
+    - gke:
+        cluster: erra-gke-cluster
+        namespace: default
+        deployment:
+          name: flask-app
+  condition:
+    - targets:
+        - type: gke
+          name: erra-gke-cluster
+
+# apiVersion: deploy.cloud.google.com/v1
+# kind: DeliveryPipeline
+# metadata:
+#   name: my-pipeline
+# description: "My GKE DEPLOY pipeline"
+# serialPipeline:
+#   stages:
+#   - targetId: flask-pipeline
+#   profiles:
+#   - flask-pipeline
+
+# ---
+# apiVersion: deploy.cloud.google.com/v1
+# kind: Target
+# metadata:
+#   name: flask-pipeline
+# description: "Development environment"
+# requireApproval: false
+# gke:
+#   cluster: projects/$PROJECT_ID/locations/us-central1/clusters/terra-gke-cluster
+#   location: us-central1
