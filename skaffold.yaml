@@ -2,12 +2,18 @@ apiVersion: skaffold/v2beta26
 kind: Config
 metadata:
   name: flask-app
-profiles:
-  - name: flask-pipeline
-    deploy:
-      kubectl:
-        manifests:
-        - k8s/deployment.yaml
+build:
+  artifacts:
+    - image: gcr.io/gke-k8-terra/flask-app
+      context: .
+      docker:
+        dockerfile: Dockerfile
+  tagPolicy:
+    sha256: {}
+deploy:
+  kubectl:
+    manifests:
+    - k8s/deployment.yaml
 
 # apiVersion: skaffold/v2beta13
 # kind: Config
@@ -20,3 +26,21 @@ profiles:
 #   kubectl:
 #     manifests:
 #     - k8s/deployment.yaml
+
+# apiVersion: skaffold/v2beta25
+# kind: Config
+# metadata:
+#   name: python-app
+# build:
+#   artifacts:
+#     - image: us-west1-docker.pkg.dev/YOUR_PROJECT_ID/YOUR_REPOSITORY_NAME/python-app
+#       context: .
+#       docker:
+#         dockerfile: Dockerfile
+#   tagPolicy:
+#     sha256: {}
+# deploy:
+#   kubectl:
+#     manifests:
+#       - k8s/deployment.yaml
+#       - k8s/service.yaml
