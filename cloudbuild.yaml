@@ -11,11 +11,11 @@
 steps:
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', '$_REGION-docker.pkg.dev/${PROJECT_ID}/$_REPO_NAME/$_IMAGE_NAME:$_TAG', './app']
+    args: ['build', '-t', '$_REGION_NAME-docker.pkg.dev/${PROJECT_ID}/$_REPO_NAME/$_IMAGE_NAME:$_TAG', './app']
 
   # Docker Push
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', '$_REGION-docker.pkg.dev/${PROJECT_ID}/$_REPO_NAME/$_IMAGE_NAME:$_TAG']
+    args: ['push', '$_REGION_NAME-docker.pkg.dev/${PROJECT_ID}/$_REPO_NAME/$_IMAGE_NAME:$_TAG']
 
   # - name: gcr.io/google.com/cloudsdktool/cloud-sdk
   #   id: 'Cloud-deploy'
@@ -29,7 +29,7 @@ steps:
 
 images:
 #  - 'gcr.io/$PROJECT_ID/$_REPO_NAME:$SHORT_SHA'
-  - '$_REGION-docker.pkg.dev/${PROJECT_ID}/$_REPO_NAME/$_IMAGE_NAME:$_TAG'
+  - '$_REGION_NAME-docker.pkg.dev/${PROJECT_ID}/$_REPO_NAME/$_IMAGE_NAME:$_TAG'
 #$PROJECT_ID/$_REPO_NAME:$SHORT_SHA
 options:
   logging: CLOUD_LOGGING_ONLY
@@ -37,8 +37,8 @@ options:
 substitutions:
   #  _LOCATION: us-central1
   _REPO_NAME: flask-app # Default value
-  _IMAGE_NAME: flask-IMG
-  _REGION: us-central1
+  _IMAGE_NAME: flask-img
+  _REGION_NAME: us-central1
   _PIPELINE_NAME: my-pipeline
   _TAG: '$SHORT_SHA'
   _BUILD_NAME: my-release-001
