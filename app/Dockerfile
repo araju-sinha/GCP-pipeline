@@ -16,9 +16,4 @@ COPY . .
 # Make port 8080 available to the world outside this container
 EXPOSE 5000
 
-# Define environment variable
-ENV FLASK_APP=main.py
-
-# Run app.py when the container launches
-CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
-#CMD ["python", "main.py"]
+CMD ["python", "main.py"]
