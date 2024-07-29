@@ -1,46 +1,28 @@
 apiVersion: skaffold/v2beta26
 kind: Config
-metadata:
-  name: flask-app
+apiVersion: skaffold/v4beta7
+kind: Config
 build:
-  artifacts:
-    - image: gcr.io/gke-k8-terra/flask-app
-      context: .
-      docker:
-        dockerfile: Dockerfile
   tagPolicy:
-    sha256: {}
-deploy:
-  kubectl:
+    gitCommit: {}
+  local: {}
+profiles: # used to differentiate the manifest files for dev and prod env.
+  - name: flask-pipeline # used in cloud-deploy.yaml of step-1.
     manifests:
     - k8s/deployment.yaml
 
-# apiVersion: skaffold/v2beta13
-# kind: Config
-# metadata:
-#   name: flask-app
-# build:
-#   artifacts:
-#   - image: gcr.io/$PROJECT_ID/flask-app:$SHORT_SHA
-# deploy:
-#   kubectl:
-#     manifests:
-#     - k8s/deployment.yaml
-
-# apiVersion: skaffold/v2beta25
-# kind: Config
-# metadata:
-#   name: python-app
-# build:
-#   artifacts:
-#     - image: us-west1-docker.pkg.dev/YOUR_PROJECT_ID/YOUR_REPOSITORY_NAME/python-app
-#       context: .
-#       docker:
-#         dockerfile: Dockerfile
-#   tagPolicy:
-#     sha256: {}
-# deploy:
-#   kubectl:
-#     manifests:
-#       - k8s/deployment.yaml
-#       - k8s/service.yaml
+deploy:
+  kubectl: {}
+  logs:
+    prefix: container # this is a fixed value. 
+customActions: # this would be used in pre-deploy and post-deploy steps.
+  - name: em-verify-test # used in cloud-deploy.yaml file of step-1. 
+    containers:
+      - name: em-verify-test # can be any name
+        image: alpine # this should be an image provided by GCP or from the Artifact registry.
+        command:
+          - /bin/sh
+        args:
+          - -c
+          - ls -la # can be any command that can be run inside on the fly container where the image mentioned is used.
+verify:
