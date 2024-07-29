@@ -1,11 +1,11 @@
 steps:
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', '$_REGION_NAME-docker.pkg.dev/${PROJECT_ID}/$_REPO_NAME/$_IMAGE_NAME:$_TAG', './app']
+    args: ['build', '-t', '$_REGION_NAME-docker.pkg.dev/${PROJECT_ID}/$_REPO_NAME/$_IMAGE_NAME', './app']
 
   # Docker Push
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', '$_REGION_NAME-docker.pkg.dev/${PROJECT_ID}/$_REPO_NAME/$_IMAGE_NAME:$_TAG']
+    args: ['push', '$_REGION_NAME-docker.pkg.dev/${PROJECT_ID}/$_REPO_NAME/$_IMAGE_NAME']
 
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
     id: 'Cloud-deploy'
@@ -16,9 +16,9 @@ steps:
 
 #--images=gcr.io/$PROJECT_ID/$_REPO_NAME=gcr.io/$PROJECT_ID/$_REPO_NAME:$SHORT_SHA
 
-images:
-#  - 'gcr.io/$PROJECT_ID/$_REPO_NAME:$SHORT_SHA'
-  - '$_REGION_NAME-docker.pkg.dev/${PROJECT_ID}/$_REPO_NAME/$_IMAGE_NAME:$_TAG'
+# images:
+# #  - 'gcr.io/$PROJECT_ID/$_REPO_NAME:$SHORT_SHA'
+#   - '$_REGION_NAME-docker.pkg.dev/${PROJECT_ID}/$_REPO_NAME/$_IMAGE_NAME'
 #$PROJECT_ID/$_REPO_NAME:$SHORT_SHA
 options:
   logging: CLOUD_LOGGING_ONLY
