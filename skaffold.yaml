@@ -1,16 +1,18 @@
 apiVersion: skaffold/v4beta9
 kind: Config
-build:
-  tagPolicy:
-    gitCommit: {}
-  local: {}
-manifests:
-  rawYaml:
-    - ./k8s/*
-deploy:
-  kubectl: {}
-  logs:
-    prefix: container
+profiles:
+  - name: flask-pipeline
+    build:
+      tagPolicy:
+        gitCommit: {}
+      local: {}
+    manifests:
+      rawYaml:
+        - ./k8s/*
+    deploy:
+      kubectl: {}
+      logs:
+        prefix: container
 
 
 # apiVersion: skaffold/v2beta26
