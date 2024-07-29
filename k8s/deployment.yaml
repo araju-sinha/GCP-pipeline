@@ -18,4 +18,4 @@ spec:
       - name: flask-app
         image: us-central1-docker.pkg.dev/gke-k8-terra/flask-app/flask-img
         ports:
-        - containerPort: 80
+        - containerPort: 5000
