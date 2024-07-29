@@ -29,7 +29,7 @@ substitutions:
   _IMAGE_NAME: flask-img
   _REGION_NAME: us-central1
   _PIPELINE_NAME: my-pipeline
-  _TAG: '$SHORT_SHA'
+  _TAG: latest
   _BUILD_NAME: my-release-001
 
 # when build repo and push 
