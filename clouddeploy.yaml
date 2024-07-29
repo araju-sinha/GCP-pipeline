@@ -13,14 +13,14 @@ deliveryPipeline:
       profiles:
         - flask-pipeline
     - gke:
-        cluster: erra-gke-cluster
+        cluster: terra-gke-cluster
         namespace: default
         deployment:
           name: flask-app
   condition:
     - targets:
         - type: gke
-          name: erra-gke-cluster
+          name: terra-gke-cluster
 
 # apiVersion: deploy.cloud.google.com/v1
 # kind: DeliveryPipeline
