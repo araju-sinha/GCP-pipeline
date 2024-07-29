@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: gcr.io/gke-k8-terra/flask-app:$SHORT_SHA
+        image: us-central1-docker.pkg.dev/${PROJECT_ID}/flask-app/flask-img:$SHORT_SHA
         ports:
         - containerPort: 80
