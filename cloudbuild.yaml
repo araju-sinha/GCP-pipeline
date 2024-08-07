@@ -28,7 +28,7 @@ substitutions:
   _REPO_NAME: flask-app # Default value
   _IMAGE_NAME: flask-img
   _REGION_NAME: us-central1
-  _PIPELINE_NAME: my-pipeline
+  _PIPELINE_NAME: gke-flask-pipeline
   _TAG: latest
   _BUILD_NAME: my-release-001
 
