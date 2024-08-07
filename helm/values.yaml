@@ -1,0 +1,5 @@
+replicas: 1
+
+image:
+  repository: us-central1-docker.pkg.dev/gke-k8-terra/flask-app/flask-img
+  tag: latest
