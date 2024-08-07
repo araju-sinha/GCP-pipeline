@@ -8,8 +8,8 @@ profiles:
     #   local: {}
     manifests:
       rawYaml:
-#        - ./k8s/*
-        - ./helm/*
+        - ./k8s/*
+#        - ./helm/*
     deploy:
       kubectl: {}
       logs:
