@@ -10,7 +10,7 @@ deliveryPipeline:
         project: ${PROJECT_ID}
         location: us-central1
       profiles:
-        - flask-pipeline
+        - gke-flask-target
     - gke:
         cluster: terra-gke-cluster
         namespace: default
