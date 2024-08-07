@@ -1,3 +1,4 @@
+/*
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -19,3 +20,4 @@ spec:
         image: us-central1-docker.pkg.dev/gke-k8-terra/flask-app/flask-img
         ports:
         - containerPort: 5000
+*/
