@@ -9,7 +9,7 @@ profiles:
     manifests:
       rawYaml:
 #        - ./k8s/*
-        - ./heml/*
+        - ./helm/*
     deploy:
       kubectl: {}
       logs:
